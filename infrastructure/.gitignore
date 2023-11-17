@@ -1,0 +1,6 @@
+# Ignore everything
+.*
+
+# Except the main.tf file
+!*.tf
+!.gitignore

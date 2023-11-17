@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "sharedride"
+version = "0.1.0"
+description = ""
+authors = ["Martijn Boers <martijn@plebian.nl>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^2"
+fastapi = "^0.104.1"
+uvicorn = "^0.24.0"
+mapbox = "^0.18.1"
+mypy = "^1.6.1"
+mangum = "^0.17.0"
+redis = "^5.0.1"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
+fake-useragent = "^1.3.0"
+scrapy = "^2.11.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
