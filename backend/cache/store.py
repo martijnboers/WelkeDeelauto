@@ -1,17 +1,13 @@
 import hashlib
-import os
 import re
+from decimal import Decimal
 
-import redis
 import requests
 from fake_useragent import UserAgent
-from decimal import Decimal
 
 from models.models import ProviderStoreItem
 
-redis_connection = redis.Redis(
-    host=os.getenv("REDIS_HOST", "localhost"), port=6379, decode_responses=True
-)
+local_cache = {}
 
 
 def hash_key(selector) -> str:
@@ -26,14 +22,13 @@ def strip_all_get_decimal(dirty) -> Decimal:
 
 
 def get_provider_html(url: str) -> ProviderStoreItem:
-    item = redis_connection.hgetall(hash_key(url))
+    item = local_cache.get(hash_key(url))
 
     if not item:
         item = ProviderStoreItem(
             url=url,
             html=requests.get(url, headers={"User-Agent": UserAgent().random}).content,
         )
-        redis_connection.hset(hash_key(item.url), mapping=item.model_dump())
-        return item
+        local_cache[hash_key(item.url)] = item
 
-    return ProviderStoreItem(**item) if item else None
+    return item

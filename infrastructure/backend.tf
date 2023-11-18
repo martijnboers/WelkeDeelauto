@@ -30,7 +30,7 @@ module "lambda_image" {
   description   = "Backend for Welkedeelauto"
 
   create_package = false
-  publish = true
+  publish        = true
 
   ##################
   # Container Image
@@ -39,6 +39,10 @@ module "lambda_image" {
   architectures = ["x86_64"]
 
   image_uri = module.docker_image.image_uri
+
+#  environment_variables = {
+#    REDIS_HOST = "World"
+#  }
 
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
@@ -51,8 +55,8 @@ module "lambda_image" {
 module "docker_image" {
   source = "terraform-aws-modules/lambda/aws//modules/docker-build"
 
-  create_ecr_repo = true
-  ecr_repo        = "lambda-api-current"
+  create_ecr_repo           = true
+  ecr_repo                  = "lambda-api-current"
   ecr_repo_lifecycle_policy = jsonencode({
     "rules" : [
       {

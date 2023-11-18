@@ -22,7 +22,6 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             terraform
-	    redis
             alejandra
             nodejs_20
             nodePackages.prettier
