@@ -1,90 +1,84 @@
-# --- ECR ---
-resource "aws_ecr_repository" "api" {
-  name                 = "lambda-api"
-  image_tag_mutability = "MUTABLE"
-  force_delete         = true
+data "aws_region" "current" {}
 
-  image_scanning_configuration {
-    scan_on_push = true
-  }
-}
+data "aws_caller_identity" "this" {}
 
-# --- Build & push image ---
+data "aws_ecr_authorization_token" "token" {}
+
 locals {
-  repo_url = aws_ecr_repository.api.repository_url
+  source_path   = "../backend"
+  path_include  = ["**"]
+  path_exclude  = ["**/__pycache__/**"]
+  files_include = setunion([for f in local.path_include : fileset(local.source_path, f)]...)
+  files_exclude = setunion([for f in local.path_exclude : fileset(local.source_path, f)]...)
+  files         = sort(setsubtract(local.files_include, local.files_exclude))
+
+  dir_sha = sha1(join("", [for f in local.files : filesha1("${local.source_path}/${f}")]))
 }
 
-resource "null_resource" "image" {
-  triggers = {
-    hash = md5(join("-", [for x in fileset("", "../backend/{*.py,*.txt,.dockerignore,Dockerfile}") : filemd5(x)]))
+provider "docker" {
+  registry_auth {
+    address  = format("%v.dkr.ecr.%v.amazonaws.com", data.aws_caller_identity.this.account_id, data.aws_region.current.name)
+    username = data.aws_ecr_authorization_token.token.user_name
+    password = data.aws_ecr_authorization_token.token.password
   }
+}
 
-  provisioner "local-exec" {
-    command = <<EOF
-      aws ecr get-login-password --profile personal --region eu-west-1 | docker login --username AWS --password-stdin ${local.repo_url}
-      docker build --platform linux/x86_64 -t ${local.repo_url}:latest ../backend
-      docker push ${local.repo_url}:latest
-    EOF
+module "lambda_image" {
+  source = "terraform-aws-modules/lambda/aws"
+
+  function_name = "welkedeelauto"
+  description   = "Backend for Welkedeelauto"
+
+  create_package = false
+  publish = true
+
+  ##################
+  # Container Image
+  ##################
+  package_type  = "Image"
+  architectures = ["x86_64"]
+
+  image_uri = module.docker_image.image_uri
+
+  allowed_triggers = {
+    AllowExecutionFromAPIGateway = {
+      service    = "apigateway"
+      source_arn = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*"
+    }
   }
 }
 
-data "aws_ecr_image" "latest" {
-  repository_name = aws_ecr_repository.api.name
-  image_tag       = "latest"
-  depends_on      = [null_resource.image]
-}
+module "docker_image" {
+  source = "terraform-aws-modules/lambda/aws//modules/docker-build"
 
-# --- IAM Role ---
-resource "aws_iam_role" "lambda" {
-  name = "lambda"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Effect    = "Allow"
-      Action    = "sts:AssumeRole"
-      Principal = { Service = "lambda.amazonaws.com" }
-    }]
+  create_ecr_repo = true
+  ecr_repo        = "lambda-api-current"
+  ecr_repo_lifecycle_policy = jsonencode({
+    "rules" : [
+      {
+        "rulePriority" : 1,
+        "description" : "Keep only the last 2 images",
+        "selection" : {
+          "tagStatus" : "any",
+          "countType" : "imageCountMoreThan",
+          "countNumber" : 2
+        },
+        "action" : {
+          "type" : "expire"
+        }
+      }
+    ]
   })
-}
 
-resource "aws_lambda_permission" "apigw_lambda" {
-  statement_id  = "AllowExecutionFromAPIGateway"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.api.function_name
-  principal     = "apigateway.amazonaws.com"
+  use_image_tag = false # If false, sha of the image will be used
 
-  # The /*/*/* part allows invocation from any stage, method and resource path
-  # within API Gateway REST API.
-  source_arn = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*/*"
-}
+  # use_image_tag = true
+  # image_tag   = "2.0"
 
-resource "aws_iam_role_policy_attachment" "lambda_logs" {
-  role       = aws_iam_role.lambda.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-}
+  source_path = local.source_path
+  platform    = "linux/amd64"
 
-# --- Lambda ---
-resource "aws_cloudwatch_log_group" "api" {
-  name              = "/aws/lambda/api"
-  retention_in_days = 14
-}
-
-resource "aws_lambda_function" "api" {
-  function_name    = "api"
-  role             = aws_iam_role.lambda.arn
-  image_uri        = "${aws_ecr_repository.api.repository_url}:latest"
-  package_type     = "Image"
-  source_code_hash = trimprefix(data.aws_ecr_image.latest.id, "sha256:")
-  timeout          = 10
-
-  environment {
-    variables = {}
+  triggers = {
+    dir_sha = local.dir_sha
   }
-
-  depends_on = [
-    null_resource.image,
-    aws_iam_role_policy_attachment.lambda_logs,
-    aws_cloudwatch_log_group.api,
-  ]
 }
