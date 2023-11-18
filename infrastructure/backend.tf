@@ -31,6 +31,7 @@ module "lambda_image" {
 
   create_package = false
   publish        = true
+  timeout        = 10
 
   ##################
   # Container Image
@@ -40,9 +41,9 @@ module "lambda_image" {
 
   image_uri = module.docker_image.image_uri
 
-#  environment_variables = {
-#    REDIS_HOST = "World"
-#  }
+  #  environment_variables = {
+  #    REDIS_HOST = "World"
+  #  }
 
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
