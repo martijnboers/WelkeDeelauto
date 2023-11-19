@@ -5,7 +5,7 @@ deploy-backend:
 	terraform validate && terraform apply
 deploy-frontend:
 	cd frontend
-	BACKEND_URL=https://api.welkedeelauto.nl npm run build-serverless-next
+	npm run package 
 	cd ../infrastructure
 	terraform apply
 

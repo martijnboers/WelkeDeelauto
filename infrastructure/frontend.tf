@@ -7,22 +7,22 @@ module "opennext" {
   hosted_zone_id      = aws_route53_zone.welkedeelauto.zone_id  # The Route53 hosted zone ID for your domain name
 
   server_options = {
-    reserved_concurrent_executions : 10
+    reserved_concurrent_executions : 1
   }
   image_optimization_options = {
-    reserved_concurrent_executions : 10
+    reserved_concurrent_executions : 1
   }
   revalidation_options = {
-    reserved_concurrent_executions : 10
+    reserved_concurrent_executions : 1
   }
 
   warmer_options = {
-    reserved_concurrent_executions : 10
+    reserved_concurrent_executions : 1
   }
 
   cloudfront = {
     aliases             = [var.domain]
-    acm_certificate_arn = module.acm.acm_certificate_arn
+    acm_certificate_arn = module.acm_global.acm_certificate_arn
     assets_paths        = ["/images/*"]
   }
 }

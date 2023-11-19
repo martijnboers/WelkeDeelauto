@@ -17,6 +17,18 @@ module "acm" {
   }
 }
 
+module "acm_global" {
+  source  = "terraform-aws-modules/acm/aws"
+  version = "4.3.2"
+
+  domain_name = var.domain
+  zone_id     = aws_route53_zone.welkedeelauto.zone_id
+
+  providers = {
+    aws = aws.global
+  }
+}
+
 #resource "aws_route53_record" "next_cloudfront_alias" {
 #  zone_id = aws_route53_zone.welkedeelauto.zone_id
 #  name    = var.domain
