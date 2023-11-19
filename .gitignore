@@ -13,12 +13,12 @@ dump.rdb
 
 # Nextjs Deploy
 frontend/app-backup/
+.open-next/
 
 # production
 build
 deployments/
 standalone/
-
 
 ../.direnv
 .venv

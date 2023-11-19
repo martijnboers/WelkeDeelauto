@@ -31,9 +31,14 @@ provider "aws" {
   skip_requesting_account_id = false
 }
 
-# Provider used for creating the Lambda@Edge function which must be deployed
-# to us-east-1 region (Should not be changed)
 provider "aws" {
-  alias  = "global_region"
+  alias  = "global"
   region = "us-east-1"
+
+  default_tags {
+    tags = {
+      Project     = "terraform-aws-opennext"
+      Environment = "prod"
+    }
+  }
 }

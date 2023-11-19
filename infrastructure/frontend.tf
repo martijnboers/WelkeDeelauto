@@ -1,16 +1,28 @@
-module "next_serverless" {
-  source  = "Nexode-Consulting/nextjs-serverless/aws"
+module "opennext" {
+  source  = "nhs-england-tools/opennext/aws"
+  version = "1.0.0" # Use the latest release from https://github.com/nhs-england-tools/terraform-aws-opennext/releases
 
-  deployment_name = "nextjs-welkedeelauto"
-  region          = var.region
-  base_dir        = "./../frontend/"
+  prefix              = "welkedeelauto"                     # Prefix for all created resources
+  opennext_build_path = "./../frontend/.open-next"          # Path to your .open-next folder
+  hosted_zone_id      = aws_route53_zone.welkedeelauto.zone_id  # The Route53 hosted zone ID for your domain name
 
-  next_lambda_env_vars = {
-    BACKEND_URL = "api.welkedeelauto.nl"
+  server_options = {
+    reserved_concurrent_executions : 10
+  }
+  image_optimization_options = {
+    reserved_concurrent_executions : 10
+  }
+  revalidation_options = {
+    reserved_concurrent_executions : 10
   }
 
-  runtime = "nodejs18.x"
+  warmer_options = {
+    reserved_concurrent_executions : 10
+  }
 
-  cloudfront_acm_certificate_arn = module.acm_global.acm_certificate_arn
-  cloudfront_aliases             = [var.domain]
+  cloudfront = {
+    aliases             = [var.domain]
+    acm_certificate_arn = module.acm.acm_certificate_arn
+    assets_paths        = ["/images/*"]
+  }
 }
