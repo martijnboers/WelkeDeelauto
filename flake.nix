@@ -21,6 +21,7 @@
       in {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
+            poetry
             terraform
             alejandra
             nodejs_20
