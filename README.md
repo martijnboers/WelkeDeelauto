@@ -2,7 +2,7 @@
 
 ## Welkedeelauto?
 
-![Alt text](frontend/public/product.png?raw=true "Title")
+![product image](https://github.com/martijnboers/WelkeDeelauto/blob/main/frontend/public/product.png "Title")
 
 For years I have used shared cars, and I wanted an easy way to have all the prices listed. Since the costs of these
 services vary greatly and change a lot, online items/services show outdated prices. Therefore, I created this website
