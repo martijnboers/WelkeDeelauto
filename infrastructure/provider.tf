@@ -10,8 +10,8 @@ terraform {
   # Provider-specific settings
   required_providers {
     aws = {
-      version = ">= 2.7.0"
       source  = "hashicorp/aws"
+      version = "~> 4.0"
     }
     docker = {
       source  = "kreuzwerker/docker"
@@ -25,8 +25,15 @@ terraform {
 
 provider "aws" {
   profile = "personal"
-  region  = "eu-west-1"
+  region  = var.region
 
   # skip_requesting_account_id should be disabled to generate valid ARN in apigatewayv2_api_execution_arn
   skip_requesting_account_id = false
+}
+
+# Provider used for creating the Lambda@Edge function which must be deployed
+# to us-east-1 region (Should not be changed)
+provider "aws" {
+  alias  = "global_region"
+  region = "us-east-1"
 }

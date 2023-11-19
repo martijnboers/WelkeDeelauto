@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier-format": "prettier app/**/*.{js,css} --write"
+    "prettier-format": "prettier app/**/*.{js,css} --write",
+    "build-serverless-next": "build-serverless-next"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
     "@types/react": "^18.2.37",
-    "next": "14.0.1",
+    "next": "^13.4.19",
     "nextjs-current-url": "^1.0.3",
     "react": "^18",
     "react-copy-to-clipboard": "^5.1.0",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
+    "build-serverless-next": "latest",
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.1",
     "postcss": "^8",

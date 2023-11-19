@@ -9,3 +9,11 @@ variable "api_domain" {
   type        = string
   default     = "api.welkedeelauto.nl"
 }
+
+variable "region" {
+  description = "Default AWS region"
+  type        = string
+  default     = "eu-west-1"
+}
+
+

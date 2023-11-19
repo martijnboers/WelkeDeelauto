@@ -1,8 +1,13 @@
 .ONESHELL:
 
-deploy:
+deploy-backend:
 	cd infrastructure
 	terraform validate && terraform apply
+deploy-frontend:
+	cd frontend
+	BACKEND_URL=https://api.welkedeelauto.nl npm run build-serverless-next
+	cd ../infrastructure
+	terraform apply
 
 build-local:
 	cd backend

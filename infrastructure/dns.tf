@@ -15,7 +15,32 @@ module "acm" {
   tags = {
     Name = "Cert ${var.domain}"
   }
+}
 
+module "acm_global" {
+  source  = "terraform-aws-modules/acm/aws"
+  version = "4.3.2"
+
+  domain_name = var.domain
+  zone_id     = aws_route53_zone.welkedeelauto.zone_id
+
+  providers = {
+    aws = aws.global_region
+  }
+}
+
+resource "aws_route53_record" "next_cloudfront_alias" {
+  zone_id = aws_route53_zone.welkedeelauto.zone_id
+  name    = var.domain
+  type    = "A"
+
+  allow_overwrite = true
+
+  alias {
+    name                   = module.next_serverless.cloudfront_url
+    zone_id                = module.next_serverless.distribution.next_distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
 }
 
 resource "aws_route53_record" "api" {

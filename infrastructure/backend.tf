@@ -56,8 +56,8 @@ module "lambda_image" {
 module "docker_image" {
   source = "terraform-aws-modules/lambda/aws//modules/docker-build"
 
-  create_ecr_repo           = true
-  ecr_repo                  = "lambda-api-current"
+  create_ecr_repo = true
+  ecr_repo        = "lambda-api-current"
   ecr_repo_lifecycle_policy = jsonencode({
     "rules" : [
       {

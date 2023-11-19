@@ -11,8 +11,14 @@ out/
 # Redis
 dump.rdb
 
+# Nextjs Deploy
+frontend/app-backup/
+
 # production
 build
+deployments/
+standalone/
+
 
 ../.direnv
 .venv
