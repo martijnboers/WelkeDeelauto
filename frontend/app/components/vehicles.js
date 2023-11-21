@@ -9,14 +9,17 @@ export default function Vehicles({ tripInformation }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
     const requestOptions = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(tripInformation),
+      signal
     };
-    const controller = new AbortController();
 
     // Make an API call to fetch the data
     fetch(process.env.BACKEND_URL + "/providers", requestOptions)
