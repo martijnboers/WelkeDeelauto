@@ -31,7 +31,6 @@ def home() -> duck:
 
 @app.post("/providers")
 async def routing_request(request: ProviderVehiclesRequest) -> List[VehicleOption]:
-    time.sleep(2)
     return await get_options_ordered(request)
 
 

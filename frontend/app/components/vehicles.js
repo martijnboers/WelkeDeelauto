@@ -18,7 +18,7 @@ export default function Vehicles({ tripInformation }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(tripInformation),
-      signal
+      signal,
     };
 
     // Make an API call to fetch the data
@@ -47,16 +47,17 @@ export default function Vehicles({ tripInformation }) {
   );
 }
 
-function Vehicle({ data }) {
+function Vehicle({ key, data }) {
   // Render your component using the data
   return (
     <div className="p-4 md:w-1/2 xl:w-1/4">
       <div className="rounded-lg bg-gray-100 p-6">
         <Image
+          key={key}
           src={"/" + data.vehicle_image}
           alt="Picture of car"
-          width={400}
-          height={400}
+          width={300}
+          height={200}
         />
         <h3 className="title-font text-xs font-medium tracking-widest text-blue-500">
           {data.type}
@@ -64,9 +65,7 @@ function Vehicle({ data }) {
         <h2 className="title-font mb-4 text-lg font-medium text-gray-900">
           {data.provider}
         </h2>
-        <p className="text-base leading-relaxed">
-          Hoeveel kost het: €{data.total_price}
-        </p>
+        <p className="text-base leading-relaxed">Prijs: €{data.total_price}</p>
       </div>
     </div>
   );

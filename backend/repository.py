@@ -4,6 +4,7 @@ from typing import List
 from models.interface import VehicleOption
 from models.models import ProviderVehiclesRequest
 from providers.greenwheels import GreenWheels
+from providers.hely import Hely
 from providers.mywheels import MyWheels
 from providers.owncar import OwnCar
 from providers.sharenow import ShareNow
@@ -35,6 +36,11 @@ async def get_options_ordered(
         SixtShare(
             vehicle_request=vehicle_request,
             pricing_urls=["https://www.sixt.nl/share/tarieven/#/"],
+            free_parking=True,
+        ),
+        Hely(
+            vehicle_request=vehicle_request,
+            pricing_urls=["https://hely.com/tarieven?lng=en"],
             free_parking=True,
         ),
         OwnCar(vehicle_request=vehicle_request, free_parking=False),

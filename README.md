@@ -54,7 +54,7 @@ This project uses a couple of development wrapper to increase developer experien
 5. Run `npm run dev` to start the web server
 6. Enter into backend project
 7. Run `poetry install`
-8. Run `.venv/bin/uvicorn web:handler --host 0.0.0.0 --port 8000 `
+8. Run `.venv/bin/uvicorn web:app --host 0.0.0.0 --port 8000 `
 9. Refresh frontend page
 10. Success!
 
