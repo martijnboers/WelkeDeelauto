@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "sst bind next dev",
+    "dev": "next dev",
     "build": "next build",
     "package": "BACKEND_URL=https://api.welkedeelauto.nl open-next build",
     "start": "next start",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
     "@types/react": "^18.2.37",
-    "next": "^13.4.19",
+    "next": "13.4.12",
     "nextjs-current-url": "^1.0.3",
     "react": "^18",
     "open-next": "^2.0.0",

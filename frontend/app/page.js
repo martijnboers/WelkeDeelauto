@@ -21,15 +21,15 @@ export default function Home() {
         setTripInformation((prevData) => ({...prevData, [key]: newValue}));
     };
 
-    useEffect(() => {
-        updateNavigationParams(tripInformation);
-    }, [tripInformation]);
-
-    const updateNavigationParams = (tripInfo) => {
-        router.replace("/?"+ Object.keys(tripInfo)
-            .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(tripInfo[key])}`)
-            .join('&'), { scroll: false });
-    };
+    // useEffect(() => {
+    //     updateNavigationParams(tripInformation);
+    // }, [tripInformation]);
+    //
+    // const updateNavigationParams = (tripInfo) => {
+    //     router.replace("/?"+ Object.keys(tripInfo)
+    //         .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(tripInfo[key])}`)
+    //         .join('&'), { scroll: false });
+    // };
 
     return (
         <main>

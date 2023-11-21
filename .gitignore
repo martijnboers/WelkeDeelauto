@@ -1,6 +1,9 @@
 .direnv
 .idea
 .env
+.env.development
+.env.production
+
 # dependencies
 node_modules/
 
@@ -20,7 +23,6 @@ build
 deployments/
 standalone/
 
-../.direnv
 .venv
 
 # Byte-compiled / optimized / DLL files

@@ -160,7 +160,6 @@ export default function RoutingInput({ tripInformation, updateTripDetails }) {
                   </div>
                   <Autocomplete
                     onPlaceChanged={calculateRoute}
-                    onLoad={() => setDirectionsResponse(null)}
                     restrictions={{ country: ["nl", "de", "be"] }}
                   >
                     <input
@@ -204,7 +203,6 @@ export default function RoutingInput({ tripInformation, updateTripDetails }) {
                   </div>
                   <Autocomplete
                     onPlaceChanged={calculateRoute}
-                    onLoad={() => setDirectionsResponse(null)}
                     restrictions={{ country: ["nl", "de", "be"] }}
                   >
                     <input

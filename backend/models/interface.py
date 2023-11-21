@@ -41,6 +41,7 @@ class VehicleOption(BaseModel):
 class ProviderInterface(ABC, BaseModel):
     vehicle_request: ProviderVehiclesRequest
     pricing_urls: Optional[List[str]] = Field(required=False, default=None)
+    free_parking: bool
 
     def get_pricing_html(self) -> List[ProviderStoreItem]:
         assert self.pricing_urls

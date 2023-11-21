@@ -23,6 +23,6 @@ module "opennext" {
   cloudfront = {
     aliases             = [var.domain]
     acm_certificate_arn = module.acm_global.acm_certificate_arn
-    assets_paths        = ["/images/*"]
+#     assets_paths        = ["/images/*"]
   }
 }

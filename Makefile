@@ -3,11 +3,15 @@
 deploy-backend:
 	cd infrastructure
 	terraform validate && terraform apply
+
 deploy-frontend:
 	cd frontend
 	npm run package 
 	cd ../infrastructure
 	terraform apply
+
+invalidate-cache:
+    aws cloudfront create-invalidation --distribution-id E3TMYMHI6W1ORT --paths "/*" --region us-east-1
 
 build-local:
 	cd backend
