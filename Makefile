@@ -1,17 +1,21 @@
-.ONESHELL:
+.ONESHELL: deploy-backend deploy-frontend invalidate-cache full_deploy
 
 deploy-backend:
 	cd infrastructure
-	terraform validate && terraform apply
+	terraform validate && terraform apply -auto-approve
 
 deploy-frontend:
 	cd frontend
 	npm run package 
 	cd ../infrastructure
-	terraform apply
+	terraform apply -auto-approve
 
 invalidate-cache:
-    aws cloudfront create-invalidation --distribution-id E3TMYMHI6W1ORT --paths "/*" --region us-east-1
+	aws cloudfront create-invalidation --distribution-id E3TMYMHI6W1ORT --paths "/*" --region us-east-1
+
+full_deploy: deploy-backend deploy-frontend invalidate-cache
+	echo "done"
+
 
 build-local:
 	cd backend
