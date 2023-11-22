@@ -39,7 +39,7 @@ class Hely(ProviderInterface):
                     price_per_km=Decimal(0),
                     vehicle_request=self.vehicle_request,
                 ),
-                vehicle_image="hely-city-car.jpg",
+                vehicle_image="hely-city-car.png",
                 provider="Hely",
                 type="City Car",
             ),

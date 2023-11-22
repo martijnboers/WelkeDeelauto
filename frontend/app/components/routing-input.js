@@ -27,7 +27,7 @@ const center = {
   lng: 4.89707,
 };
 
-export default function RoutingInput({ tripInformation, updateTripDetails }) {
+export default function RoutingInput({ tripInformation, setTripInformation }) {
   const { isLoaded } = useJsApiLoader({
     id: "e3b5ba4bb308558e",
     googleMapsApiKey: TOKEN,
@@ -57,14 +57,12 @@ export default function RoutingInput({ tripInformation, updateTripDetails }) {
     });
     setDirectionsResponse(results);
 
-    updateTripDetails(
-      "distance_kilometer",
-      Math.floor(results.routes[0].legs[0].distance.value / 1000)
-    );
-    updateTripDetails(
-      "time_minutes",
-      Math.floor(results.routes[0].legs[0].duration.value / 60)
-    );
+    setTripInformation(update => {
+      update.distance_kilometer = Math.floor(results.routes[0].legs[0].distance.value / 1000)
+    });
+    setTripInformation(update => {
+      update.time_minutes = Math.floor(results.routes[0].legs[0].duration.value / 60)
+    });
   }
 
   const onLoad = React.useCallback(function callback(map) {
@@ -220,11 +218,11 @@ export default function RoutingInput({ tripInformation, updateTripDetails }) {
           </ol>
           <Options
             tripInformation={tripInformation}
-            updateTripDetails={updateTripDetails}
+            setTripInformation={setTripInformation}
           />
           <Sliders
             tripInformation={tripInformation}
-            updateTripDetails={updateTripDetails}
+            setTripInformation={setTripInformation}
           />
         </div>
       </div>

@@ -1,13 +1,17 @@
 import React from "react";
 import { getHumanReadable } from "@/app/util/util";
 
-export default function Sliders({ tripInformation, updateTripDetails }) {
+export default function Sliders({ tripInformation, setTripInformation }) {
   const handleKmChange = (e) => {
-    updateTripDetails("distance_kilometer", e.target.value);
+    setTripInformation(update => {
+      update.distance_kilometer = e.target.value
+    });
   };
 
   const handleTimeChange = (e) => {
-    updateTripDetails("time_minutes", e.target.value);
+    setTripInformation(update => {
+      update.time_minutes = e.target.value
+    });
   };
   return (
     <>

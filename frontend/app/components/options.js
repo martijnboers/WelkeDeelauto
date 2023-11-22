@@ -1,6 +1,8 @@
-export default function Options({ tripInformation, updateTripDetails }) {
+export default function Options({ tripInformation, setTripInformation }) {
   const handleRoundTrip = (e) => {
-    updateTripDetails("roundtrip", e.target.checked);
+    setTripInformation(update => {
+      update.roundtrip = e.target.checked
+    });
     let kilometers = tripInformation.distance_kilometer;
     let minutes = tripInformation.time_minutes;
 
@@ -12,12 +14,19 @@ export default function Options({ tripInformation, updateTripDetails }) {
       minutes = minutes / 2;
     }
 
-    updateTripDetails("distance_kilometer", Math.floor(kilometers));
-    updateTripDetails("time_minutes", Math.floor(minutes));
+    setTripInformation(update => {
+      update.distance_kilometer = Math.floor(kilometers)
+    });
+
+    setTripInformation(update => {
+      update.time_minutes = Math.floor(minutes)
+    });
   };
 
   const handleFreeParking = (e) => {
-    updateTripDetails("free_parking", e.target.checked);
+    setTripInformation(update => {
+      update.free_parking = e.target.checked
+    });
   };
 
   return (
