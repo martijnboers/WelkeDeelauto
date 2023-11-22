@@ -9,6 +9,7 @@ from providers.mywheels import MyWheels
 from providers.owncar import OwnCar
 from providers.sharenow import ShareNow
 from providers.sixtshare import SixtShare
+from providers.snappcar import SnappCar
 
 
 async def get_options_ordered(
@@ -44,6 +45,7 @@ async def get_options_ordered(
             free_parking=True,
         ),
         OwnCar(vehicle_request=vehicle_request, free_parking=False),
+        SnappCar(vehicle_request=vehicle_request, free_parking=False),
     ]
 
     if vehicle_request.free_parking is True:
