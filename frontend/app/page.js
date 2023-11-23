@@ -25,7 +25,7 @@ export default function Home() {
     const updateNavigationParams = (tripInfo) => {
         router.replace("/?"+ Object.keys(tripInfo)
             .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(tripInfo[key])}`)
-            .join('&'), { scroll: false });
+            .join('&'), { scroll: false, shallow: true });
     };
 
     return (

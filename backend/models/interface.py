@@ -22,6 +22,7 @@ class Calculator(ABC, BaseModel):
 
 class VehicleOption(BaseModel):
     vehicle_image: str
+    electric: bool = Field(default=False)
     provider: str
     type: str
 

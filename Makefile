@@ -6,6 +6,7 @@ deploy-backend:
 
 deploy-frontend:
 	cd frontend
+	npm i
 	npm run package 
 	cd ../infrastructure
 	terraform apply -auto-approve

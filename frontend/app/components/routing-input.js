@@ -1,7 +1,7 @@
 // noinspection JSUnresolvedReference
 
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import process from "@/next.config";
 import {
   Autocomplete,
@@ -34,7 +34,6 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
     libraries: ["places"],
   });
 
-  const { href } = useUrl() ?? {};
   const [copied, setCopied] = useState(false);
 
   const [map, setMap] = useState(null);
@@ -104,7 +103,7 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
               Waar wil je naar toe?
             </h2>
             <div className="absolute right-6 top-5">
-              <CopyToClipboard text={href} onCopy={() => setCopied(true)}>
+              <CopyToClipboard text={useUrl().href} onCopy={() => setCopied(true)}>
                 <button className="ml-4 inline-flex h-10 w-14 items-center justify-center rounded-full border-0 bg-gray-200 p-0 text-gray-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
