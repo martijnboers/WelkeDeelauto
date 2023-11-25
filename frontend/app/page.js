@@ -15,7 +15,7 @@ export default function Home() {
         distance_kilometer: params.get("distance_kilometer") ?? 100,
         time_minutes: params.get("time_minutes60") ?? 60,
         roundtrip: params.get("roundtrip") ?? false,
-        free_parking: params.get("free_parking") ?? false
+        free_parking: params.get("free_parking") ?? false,
     });
 
     useEffect(() => {

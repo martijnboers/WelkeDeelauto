@@ -13,7 +13,6 @@ import flatPale from "../map-styles/flat-pale.json";
 import Sliders from "@/app/components/sliders";
 import Options from "@/app/components/options";
 import { CopyToClipboard } from "react-copy-to-clipboard/src";
-import { useUrl } from "nextjs-current-url";
 
 const TOKEN = process.env.GOOGLE_MAPS_ACCESS_TOKEN;
 
@@ -38,6 +37,13 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
 
   const [map, setMap] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
+
+  const [currentUrl, setCurrentUrl] = useState(null);
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
+
 
   const originRef = useRef(null);
   const destinationRef = useRef(null);
@@ -103,7 +109,7 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
               Waar wil je naar toe?
             </h2>
             <div className="absolute right-6 top-5">
-              <CopyToClipboard text={useUrl().href} onCopy={() => setCopied(true)}>
+              <CopyToClipboard text={currentUrl} onCopy={() => setCopied(true)}>
                 <button className="ml-4 inline-flex h-10 w-14 items-center justify-center rounded-full border-0 bg-gray-200 p-0 text-gray-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
