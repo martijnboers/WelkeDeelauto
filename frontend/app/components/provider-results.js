@@ -12,10 +12,12 @@ export default function ProviderResults({ tripInformation }) {
             <div className="h-1 w-20 rounded bg-sharedride-500"></div>
           </div>
           <p className="w-full leading-relaxed text-gray-500 lg:w-1/2">
-            De weergegeven informatie is geautomatiseerd, maar kan door
-            abbonomenten of aanbiedingen mogelijk verschillen. Controleer altijd
-            de juistheid door de link in de resultaten te volgen. Deze website
-            is niet gelieerd aan de aanbieders van de deelauto's.
+            De verstrekte informatie is altijd actueel, maar wordt
+            geautomatiseerd gegenereerd op basis van een standaard (gratis)
+            abonnement. Door speciale aanbiedingen of nieuwe regels kunnen de
+            prijzen desondanks afwijken. Het is raadzaam om altijd de prijs
+            handmatig in de betreffende app/website zelf te controleren. Deze
+            website is niet verbonden aan de aanbieders van de deelauto's.
           </p>
         </div>
         <div className="-m-4 flex flex-wrap">

@@ -11,7 +11,7 @@ export default function Vehicles({ tripInformation }) {
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    setLoading(true)
+    setLoading(true);
 
     const requestOptions = {
       method: "POST",
@@ -54,20 +54,30 @@ function Vehicle({ key, data }) {
     <div className="p-4 md:w-1/2 xl:w-1/4">
       <div className="rounded-lg bg-gray-100 p-6">
         <Image
-            key={key}
-            src={"/" + data.vehicle_image}
-            alt="Picture of car"
-            width={300}
-            height={200}
+          key={key}
+          src={"/" + data.vehicle_image}
+          alt="Picture of car"
+          width={300}
+          height={200}
         />
         <h3 className="title-font flex items-center text-xs font-medium tracking-widest text-blue-500">
-          {data.type} {data.electric &&
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" className="w-4 h-4 ml-1">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          {data.type}{" "}
+          {data.electric && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="ml-1 h-4 w-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+              />
             </svg>
-        }
+          )}
         </h3>
         <h2 className="title-font mb-4 text-lg font-medium text-gray-900">
           {data.provider}

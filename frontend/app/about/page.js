@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function About() {
   return (
     <section className="flex items-center bg-gray-100 py-11 dark:bg-gray-800">
@@ -11,11 +13,16 @@ export default function About() {
           </h2>
           <p className="mb-24 text-lg font-medium text-gray-500 dark:text-gray-400">
             Al jarenlang maak ik gebruik van deelauto's, en ik wilde een
-            eenvoudige manier hebben om alle prijzen overzichtelijk te hebben.
-            Aangezien de kosten van deze diensten sterk variëren en veel
-            veranderen tonen online artikelen/diensten verouderde prijzen.
-            Daarom heb ik deze website gecreëerd die automatisch de laatste
-            prijzen ophaalt. De broncode is vrij beschikbaar.
+            eenvoudige manier creëren om alle prijzen overzichtelijk te hebben.
+            Aangezien de kosten van deze diensten sterk variëren door benzine prijzen of
+            concurrentie tonen andere online bronnen verouderde prijzen. Daarom
+            heb ik deze website zo gemaakt dat deze automatisch de laatste
+            prijzen ophaalt en een makkelijke methode geeft om deelauto
+            aanbieders te vergelijken voor jou trip. De broncode is vrij
+            beschikbaar indien je benieuwd bent hoe dit werkt: <br />
+            <Link href={"https://github.com/martijnboers/WelkeDeelauto"}>
+              https://github.com/martijnboers/WelkeDeelauto
+            </Link>
           </p>
         </div>
         <div className="-mx-4 flex flex-wrap">
@@ -38,11 +45,15 @@ export default function About() {
                 </div>
               </div>
               <h2 className="mb-4 max-w-xs text-xl font-bold leading-7 text-gray-700 dark:text-gray-300">
-                What is Components ? How does it help us?
+                Waarom zou je verschillende aanbieders gebruiken?
               </h2>
               <p className="font-medium text-gray-500 transition duration-200 dark:text-gray-500">
-                Components are pre made web structures which are used for making
-                a website faster and easier.
+                Als je experimenteert met de afstand en tijd, zul je merken dat
+                verschillende aanbieders goedkoper of duurder kunnen worden. Op
+                dit moment lijkt het erop dat elektrische auto's over het
+                algemeen voordeliger zijn, tenzij je van plan bent om de auto de
+                hele dag te gebruiken of meer kilometers wilt afleggen dan de
+                actieradius van de auto toelaat.
               </p>
             </div>
           </div>
@@ -65,11 +76,15 @@ export default function About() {
                 </div>
               </div>
               <h2 className="mb-4 max-w-xs text-xl font-bold leading-7 text-gray-700 dark:text-gray-300">
-                What is your profit for business?
+                Let op andere kosten
               </h2>
               <p className="font-medium text-gray-500 transition duration-200 dark:text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                quae quam nostrum harum non in at eaque quibusdam eum ratione.
+                Het verschilt of het parkeren is inbegrepen, en elke aanbieder
+                hanteert specifieke regels met betrekking tot het reserveren van
+                auto's en de tijdsperioden waarin je een auto kunt reserveren.
+                Bij aanbieders zoals Snappcar is het essentieel om duidelijk te
+                communiceren met de eigenaar, vooral bij terugkomst, aangezien
+                er een kans bestaat dat de eigenaar de auto zelf wil gebruiken.
               </p>
             </div>
           </div>
@@ -92,11 +107,14 @@ export default function About() {
                 </div>
               </div>
               <h2 className="mb-4 max-w-xs text-xl font-bold leading-7 text-gray-700 dark:text-gray-300">
-                What is Components ? How does it help us?
+                De website laad geen auto's meer
               </h2>
               <p className="font-medium text-gray-500 transition duration-200 dark:text-gray-500">
-                Components are pre made web structures which are used for making
-                a website faster and easier.
+                Het kan voorkomen dat de website geen auto's meer weergeeft,
+                omdat de structuur van de website van een aanbieder dusdanig is
+                veranderd dat de prijzen niet meer automatisch kunnen worden
+                opgehaald. Als dit gebeurt, kun je me een bericht sturen op
+                martijn@plebian.nl.
               </p>
             </div>
           </div>
@@ -119,11 +137,14 @@ export default function About() {
                 </div>
               </div>
               <h2 className="mb-4 max-w-xs text-xl font-bold leading-7 text-gray-700 dark:text-gray-300">
-                What is your profit for business?
+                Hoe kan ik meehelpen met betere resultaten
               </h2>
               <p className="font-medium text-gray-500 transition duration-200 dark:text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                quae quam nostrum harum non in at eaque quibusdam eum ratione.
+                Merk je dat de weergegeven prijzen niet kloppen? Maak dan een
+                'issue' aan op Github of dien zelf een wijziging in als je
+                programmeerkennis hebt! Op dit moment is deze dienst kosteloos,
+                zolang de kosten voor mijn hostingprovider en Google Maps niet
+                te hoog oplopen.
               </p>
             </div>
           </div>
@@ -146,11 +167,14 @@ export default function About() {
                 </div>
               </div>
               <h2 className="mb-4 max-w-xs text-xl font-bold leading-7 text-gray-700 dark:text-gray-300">
-                What is Components ? How does it help us?
+                Toekomstige features
               </h2>
               <p className="font-medium text-gray-500 transition duration-200 dark:text-gray-500">
-                Components are pre made web structures which are used for making
-                a website faster and easier.
+                Ik zou graag op de kaart de beschikbare auto's van landelijke
+                aanbieders zoals GreenWheel, MyWheels en Sixt Share willen
+                tonen. Het lijkt me ook interessant om gebruikers de
+                mogelijkheid te bieden de kosten van dezelfde rit met het
+                openbaar vervoer te bekijken.
               </p>
             </div>
           </div>
@@ -173,11 +197,13 @@ export default function About() {
                 </div>
               </div>
               <h2 className="mb-4 max-w-xs text-xl font-bold leading-7 text-gray-700 dark:text-gray-300">
-                What is your profit for business?
+                Meer informatie
               </h2>
               <p className="font-medium text-gray-500 transition duration-200 dark:text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                quae quam nostrum harum non in at eaque quibusdam eum ratione.
+                Voor meer informatie over de voordelen van
+                deelauto's, bezoek de website ritjeweg.nl. Hoewel de homepage
+                vergelijkbare maar verouderde functionaliteit heeft, biedt de
+                site uitstekende artikelen over het gebruik van deelauto's.
               </p>
             </div>
           </div>

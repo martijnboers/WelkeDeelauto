@@ -44,7 +44,6 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
     setCurrentUrl(window.location.href);
   }, []);
 
-
   const originRef = useRef(null);
   const destinationRef = useRef(null);
 
@@ -62,11 +61,15 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
     });
     setDirectionsResponse(results);
 
-    setTripInformation(update => {
-      update.distance_kilometer = Math.floor(results.routes[0].legs[0].distance.value / 1000)
+    setTripInformation((update) => {
+      update.distance_kilometer = Math.floor(
+        results.routes[0].legs[0].distance.value / 1000
+      );
     });
-    setTripInformation(update => {
-      update.time_minutes = Math.floor(results.routes[0].legs[0].duration.value / 60)
+    setTripInformation((update) => {
+      update.time_minutes = Math.floor(
+        results.routes[0].legs[0].duration.value / 60
+      );
     });
   }
 
