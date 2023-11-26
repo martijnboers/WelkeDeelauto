@@ -28,6 +28,7 @@ class ShareNow(ProviderInterface):
     async def get_vehicles_options(self) -> List[VehicleOption]:
         peugeot = self.get_pricing_html()[0]
         fiat = self.get_pricing_html()[1]
+        general = self.get_pricing_html()[2]
 
         peugeot_response = HtmlResponse(
             url=peugeot.url, body=peugeot.html, encoding="utf-8"
@@ -35,25 +36,34 @@ class ShareNow(ProviderInterface):
         fiat_response = HtmlResponse(url=fiat.url, body=peugeot.html, encoding="utf-8")
 
         fiat_xpaths = [
-            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[1]/div/div[1]/h3",  # fiat per minute
             "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[2]/div/div[2]/div/span/p/strong",  # fiat per km
-            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[2]/div/div[1]/h3",  # fiat per hour
         ]
 
-        (fiat_per_minute, fiat_per_km, fiat_per_hour) = tuple(
+        (fiat_per_km,) = tuple(
             strip_all_get_decimal(fiat_response.xpath(xpath).extract()[0].strip())
             for xpath in fiat_xpaths
         )
 
         peugeot_xpaths = [
-            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[1]/div/div[1]/h3",  # peugeot per minute
             "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[2]/div/div[2]/div/span/p/strong",  # peugeot per km
-            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[2]/div/div[1]/h3",  # peugeot per hour
         ]
 
-        (peugeot_per_minute, peugeot_per_km, peugeot_per_hour) = tuple(
+        (peugeot_per_km,) = tuple(
             strip_all_get_decimal(peugeot_response.xpath(xpath).extract()[0].strip())
             for xpath in peugeot_xpaths
+        )
+
+        general_response = HtmlResponse(url=general.url, body=general.html, encoding="utf-8")
+        general_xpaths = [
+            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[1]/div/div/div/span/p/strong[2]", # fiat per minute
+            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[1]/div/div/div/span/p/strong[3]", # fiat per hour
+            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[2]/div/div/div/span/p/strong[2]", # peugeot per minute
+            "/html/body/div[1]/div/div/div/div/section[2]/div/div[3]/div/div[1]/div[2]/div/div/div/span/p/strong[3]", # peugeot per hour
+        ]
+
+        (fiat_per_minute, fiat_per_hour, peugeot_per_minute, peugeot_per_hour) = tuple(
+            strip_all_get_decimal(general_response.xpath(xpath).extract()[0].strip())
+            for xpath in general_xpaths
         )
 
         return [

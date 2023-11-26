@@ -31,6 +31,7 @@ async def get_options_ordered(
             pricing_urls=[
                 "https://www.share-now.com/nl/en/peugeot-e-208/",
                 "https://www.share-now.com/nl/en/fiat-500e/",
+                "https://www.share-now.com/nl/en/pricing/"
             ],
             free_parking=True,
         ),
