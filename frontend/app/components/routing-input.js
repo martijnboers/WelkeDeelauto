@@ -13,6 +13,7 @@ import flatPale from "../map-styles/flat-pale.json";
 import Sliders from "@/app/components/sliders";
 import Options from "@/app/components/options";
 import { CopyToClipboard } from "react-copy-to-clipboard/src";
+import Message from "@/app/components/message";
 
 const TOKEN = process.env.GOOGLE_MAPS_ACCESS_TOKEN;
 
@@ -26,7 +27,11 @@ const center = {
   lng: 4.89707,
 };
 
-export default function RoutingInput({ tripInformation, setTripInformation }) {
+export default function RoutingInput({
+  tripInformation,
+  setTripInformation,
+  currentUrl,
+}) {
   const { isLoaded } = useJsApiLoader({
     id: "e3b5ba4bb308558e",
     googleMapsApiKey: TOKEN,
@@ -37,12 +42,6 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
 
   const [map, setMap] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
-
-  const [currentUrl, setCurrentUrl] = useState(null);
-
-  useEffect(() => {
-    setCurrentUrl(window.location.href);
-  }, []);
 
   const originRef = useRef(null);
   const destinationRef = useRef(null);
@@ -71,6 +70,17 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
         results.routes[0].legs[0].duration.value / 60
       );
     });
+  }
+
+  function onCopied() {
+    setCopied(true);
+    const timeout = setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }
 
   const onLoad = React.useCallback(function callback(map) {
@@ -107,12 +117,13 @@ export default function RoutingInput({ tripInformation, setTripInformation }) {
 
       <div className="container mx-auto flex px-5 py-20">
         <div className="relative z-10 mt-10 flex w-full flex-col rounded-lg bg-white p-8 shadow-md md:ml-auto md:mt-0 md:w-1/2 lg:w-1/3">
+          {copied && <Message message={"Deelbare link gekopieerd!"}></Message>}
           <div className="flex justify-between">
             <h2 className="title-font mb-1 text-lg font-medium text-gray-900">
               Waar wil je naar toe?
             </h2>
             <div className="absolute right-6 top-5">
-              <CopyToClipboard text={currentUrl} onCopy={() => setCopied(true)}>
+              <CopyToClipboard text={currentUrl} onCopy={onCopied}>
                 <button className="ml-4 inline-flex h-10 w-14 items-center justify-center rounded-full border-0 bg-gray-200 p-0 text-gray-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

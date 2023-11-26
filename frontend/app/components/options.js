@@ -39,7 +39,7 @@ export default function Options({ tripInformation, setTripInformation }) {
           type="checkbox"
           className="mt-0.5 shrink-0 rounded border-gray-200 text-blue-600 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
           id="roundtrip"
-          value={tripInformation.roundtrip}
+          checked={tripInformation.roundtrip}
           onChange={handleRoundTrip}
         />
         <span className="ms-3 text-sm text-gray-500 dark:text-gray-400">
@@ -55,7 +55,7 @@ export default function Options({ tripInformation, setTripInformation }) {
           type="checkbox"
           className="mt-0.5 shrink-0 rounded border-gray-200 text-blue-600 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
           id="include-scooters"
-          value={tripInformation.free_parking}
+          checked={tripInformation.free_parking}
           onChange={handleFreeParking}
         />
         <span className="ms-3 text-sm text-gray-500 dark:text-gray-400">

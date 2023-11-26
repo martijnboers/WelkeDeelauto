@@ -14,12 +14,12 @@ export default function About() {
           <p className="mb-24 text-lg font-medium text-gray-500 dark:text-gray-400">
             Al jarenlang maak ik gebruik van deelauto's, en ik wilde een
             eenvoudige manier creëren om alle prijzen overzichtelijk te hebben.
-            Aangezien de kosten van deze diensten sterk variëren door benzine prijzen of
-            concurrentie tonen andere online bronnen verouderde prijzen. Daarom
-            heb ik deze website zo gemaakt dat deze automatisch de laatste
-            prijzen ophaalt en een makkelijke methode geeft om deelauto
-            aanbieders te vergelijken voor jou trip. De broncode is vrij
-            beschikbaar indien je benieuwd bent hoe dit werkt: <br />
+            Aangezien de kosten van deze diensten sterk variëren door benzine
+            prijzen of concurrentie tonen andere online bronnen verouderde
+            prijzen. Daarom heb ik deze website zo gemaakt dat deze automatisch
+            de laatste prijzen ophaalt en een makkelijke methode geeft om
+            deelauto aanbieders te vergelijken voor jou trip. De broncode is
+            vrij beschikbaar indien je benieuwd bent hoe dit werkt: <br />
             <Link href={"https://github.com/martijnboers/WelkeDeelauto"}>
               https://github.com/martijnboers/WelkeDeelauto
             </Link>
@@ -200,10 +200,10 @@ export default function About() {
                 Meer informatie
               </h2>
               <p className="font-medium text-gray-500 transition duration-200 dark:text-gray-500">
-                Voor meer informatie over de voordelen van
-                deelauto's, bezoek de website ritjeweg.nl. Hoewel de homepage
-                vergelijkbare maar verouderde functionaliteit heeft, biedt de
-                site uitstekende artikelen over het gebruik van deelauto's.
+                Voor meer informatie over de voordelen van deelauto's, bezoek de
+                website ritjeweg.nl. Hoewel de homepage vergelijkbare maar
+                verouderde functionaliteit heeft, biedt de site uitstekende
+                artikelen over het gebruik van deelauto's.
               </p>
             </div>
           </div>
