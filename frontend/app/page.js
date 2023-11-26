@@ -1,37 +1,20 @@
-'use client'
+import Home from "@/app/components/home";
 
-import ProviderResults from "@/app/components/provider-results";
-import RoutingInput from "@/app/components/routing-input";
-import {useRouter, useSearchParams} from 'next/navigation';
-import {useImmer} from "use-immer";
-import {useEffect} from "react";
+export const metadata = {
+    title: "Welke Deelauto?",
+    keywords: ["Deel autos", "Prijs", "Vergelijken", "Greenwheels", "MyWheels", "Snappcar", "Sixt Share"],
+    openGraph: {
+        title: 'Welke Deelauto',
+        description: 'Vergelijk prijzen van deel auto aanbieders',
+        images: ['https://welkedeelauto.nl/_next/image?url=%2Fopengraph-image.png&w=1200&h=675&q=75'],
+        url: 'https://welkedeelauto.nl',
+    },
+    metadataBase: new URL('https://welkedeelauto.nl'),
+    icons: {
+        icon: '/favicon.ico',
+    }
+};
 
-export default function Home() {
-    const router = useRouter();
-    const params = useSearchParams();
-
-
-    const [tripInformation, setTripInformation] = useImmer({
-        distance_kilometer: params.get("distance_kilometer") ?? 100,
-        time_minutes: params.get("time_minutes60") ?? 60,
-        roundtrip: params.get("roundtrip") ?? false,
-        free_parking: params.get("free_parking") ?? false,
-    });
-
-    useEffect(() => {
-        updateNavigationParams(tripInformation);
-    }, [tripInformation]);
-
-    const updateNavigationParams = (tripInfo) => {
-        router.replace("/?"+ Object.keys(tripInfo)
-            .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(tripInfo[key])}`)
-            .join('&'), { scroll: false, shallow: true });
-    };
-
-    return (
-        <main>
-            <RoutingInput tripInformation={tripInformation} setTripInformation={setTripInformation}/>
-            <ProviderResults tripInformation={tripInformation}/>
-        </main>
-    )
+export default function Page() {
+    return <Home></Home>
 }
