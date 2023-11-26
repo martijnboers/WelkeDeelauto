@@ -1,5 +1,9 @@
 .ONESHELL: deploy-backend deploy-frontend invalidate-cache full_deploy
 
+update:
+	cd infrastructure
+	terraform get -update=true
+
 deploy-backend:
 	cd infrastructure
 	terraform validate && terraform apply -auto-approve
@@ -7,7 +11,7 @@ deploy-backend:
 deploy-frontend:
 	cd frontend
 	npm i
-	npm run package 
+	npm run package
 	cd ../infrastructure
 	terraform apply -auto-approve
 
