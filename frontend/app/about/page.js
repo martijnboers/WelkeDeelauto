@@ -16,10 +16,11 @@ export default function About() {
             eenvoudige manier creëren om alle prijzen overzichtelijk te hebben.
             Aangezien de kosten van deze diensten sterk variëren door benzine
             prijzen of concurrentie tonen andere online bronnen verouderde
-            prijzen. Daarom heb ik deze website zo gemaakt dat deze automatisch
-            de laatste prijzen ophaalt en een makkelijke methode geeft om
-            deelauto aanbieders te vergelijken voor jou trip. De broncode is
-            vrij beschikbaar indien je benieuwd bent hoe dit werkt: <br />
+            prijzen. Daarom heb ik deze website zo gemaakt dat automatisch de
+            laatste prijzen opgehaald worden en je hierdoor eenvoudig deelauto
+            aanbieders met elkaar kunt vergelijken voor jouw volgende trip. De
+            broncode is vrij beschikbaar indien je benieuwd bent hoe dit werkt:{" "}
+            <br />
             <Link href={"https://github.com/martijnboers/WelkeDeelauto"}>
               https://github.com/martijnboers/WelkeDeelauto
             </Link>
