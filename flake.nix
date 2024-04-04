@@ -25,6 +25,7 @@
             terraform
             alejandra
             nodejs_20
+            yarn
             nodePackages.prettier
             black
           ];

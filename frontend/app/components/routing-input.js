@@ -1,18 +1,9 @@
-// noinspection JSUnresolvedReference
-
-"use client";
-import React, { useRef, useState, useEffect } from "react";
-import process from "@/next.config";
-import {
-  Autocomplete,
-  DirectionsRenderer,
-  GoogleMap,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import React, {useRef, useState} from "react";
+import {Autocomplete, DirectionsRenderer, GoogleMap, useJsApiLoader,} from "@react-google-maps/api";
 import flatPale from "../map-styles/flat-pale.json";
 import Sliders from "@/app/components/sliders";
 import Options from "@/app/components/options";
-import { CopyToClipboard } from "react-copy-to-clipboard/src";
+import {CopyToClipboard} from "react-copy-to-clipboard/src";
 import Message from "@/app/components/message";
 
 const TOKEN = process.env.GOOGLE_MAPS_ACCESS_TOKEN;
