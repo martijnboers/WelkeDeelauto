@@ -11,7 +11,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "> 4.0"
     }
     docker = {
       source  = "kreuzwerker/docker"
@@ -24,7 +24,7 @@ terraform {
 }
 
 provider "aws" {
-  profile = "personal"
+#   profile = "personal"
   region  = var.region
 
   # skip_requesting_account_id should be disabled to generate valid ARN in apigatewayv2_api_execution_arn
