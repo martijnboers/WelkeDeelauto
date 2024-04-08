@@ -24,15 +24,15 @@ class MyWheels(ProviderInterface):
         )
 
         xpaths = [
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[1]/div/div[5]/div[1]/span[1]",  # small per hour
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[1]/div/div[5]/div[2]",  # small max per day
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[1]/div/div[5]/div[3]/div",  # small max per km
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[2]/div/div[5]/div[1]/span[1]",  # medium per hour
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[2]/div/div[5]/div[2]",  # medium max per day
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[2]/div/div[5]/div[3]/div",  # medium per km
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[3]/div/div[5]/div[1]/span[1]",  # special per hour
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[3]/div/div[5]/div[2]",  # special max per day
-            "/html/body/div/div[1]/main/div[2]/div/div[1]/div/div/div[3]/div/div[5]/div[3]/div",  # special per km
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[1]/div/div/div[2]/div[1]/span[1]",  # small per hour
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[1]/div/div/div[2]/div[2]",  # small max per day
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[1]/div/div/div[2]/div[3]",  # small max per km
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[2]/div/div/div[2]/div[1]/span[1]",  # medium per hour
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[2]/div/div/div[2]/div[2]",  # medium max per day
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[2]/div/div/div[2]/div[3]",  # medium per km
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[3]/div/div/div[2]/div[1]/span[1]",  # special per hour
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[3]/div/div/div[2]/div[2]",  # special max per day
+            "/html/body/div[1]/div[3]/div[3]/div/div[1]/div[4]/div/div/div[3]/div/div/div[2]/div[3]",  # special per km
         ]
 
         (
